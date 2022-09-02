@@ -1,7 +1,33 @@
+// use std::fmt::{Display, Formatter};
+// use std::error::Error;
+use thiserror::Error;
+
 // 1. Create a DolphinError type representing the following three conditions:
 // - Hungry - The dolphin is hungry
 // - TooYoung - The dolphin is too young
 // - LongName - The dolphin's name is too long and annoying to say
+#[non_exhaustive]
+#[derive(Debug, Error)]
+pub enum DolphinError {
+    #[error("The dolphin is hungry")]
+    Hungry,
+    #[error("The dolphin is too young")]
+    TooYoung,
+    #[error("The dolphin's name is too long and annoying to say")]
+    LongName,
+}
+
+// impl Display for DolphinError {
+//     fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
+//         use DolphinError::*;
+//         match self {
+//             Hungry => write!(f, "Is Hungry"),
+//             TooYoung => write!(f, "Too young"),
+//             LongName => write!(f, "Too long and annoying"),
+//             _ => write!(f, "Unknown"),
+//         }
+//     }
+// }
 //
 // As a reminder, here are the 5 Guidelines for creating an error type:
 // (1) Use an `enum` for your error type
